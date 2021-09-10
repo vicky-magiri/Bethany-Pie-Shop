@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Order | Bethany's Pie Shop</title>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="pies.html">Pies</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <aside><img src="images/logo.png" alt="Bethany's Pie Shop" /></aside>
+
+      <article class="orderarticle">
+        <h1>Order</h1>
+
+        <div class="pie">
+          <img src="" />
+          <div class="columns">
+            <div class="title"></div>
+            <div class="price"></div>
+          </div>
+          <p class="desc"></p>
+        </div>
+
+        <form action="http://localhost:7071/api/post" method="POST">
+            <!-- to check the server api -->
+          <input type="hidden" id="pie-order" name="pie-order">
+          <input type="hidden" id="location" name="location">
+
+          <div class="inputgroup">
+            <div><label for="first-name">First name</label></div>
+            <div><input type="text" name="first-name" id="first-name" required/></div>
+          </div>
+
+          <div class="inputgroup">
+            <div><label for="last-name">Last name</label></div>
+            <div><input type="text" name="last-name" id="last-name" required/></div>
+          </div>
+
+          <div class="inputgroup">
+            <div><label for="address">Address</label></div>
+            <div><input type="text" name="address" id="address" required/></div>
+          </div>
+
+          <div class="inputgroup">
+            <div><label for="state">State</label></div>
+            <div>
+              <select name="state" id="state"required>
+                <option value="" selected>Select County</option>
+                  <option value="Mombasa">Mombasa</option>
+                  <option value="Kwale">Kwale</option>
+                  <option value="Kilifi">Kilifi</option>
+                  <option value="Tana River">Tana River</option>
+                  <option value="Lamu">Lamu</option>
+                  <option value="Taita-Taveta">Taita-Taveta</option>
+                  <option value="Garissa">Garissa</option>
+                  <option value="Wajir">Wajir</option>
+                  <option value="Mandera">Mandera</option>
+                  <option value="Marsabit">Marsabit</option>
+                  <option value="Isiolo">Isiolo</option>
+                  <option value="Meru">Meru</option>
+                  <option value="Tharaka-Nithi">Tharaka-Nithi</option>
+                  <option value="Embu">Embu</option>
+                  <option value="Kitui">Kitui</option>
+                  <option value="Machakos">Machakos</option>
+                  <option value="Makueni">Makueni</option>
+                  <option value="Nyandarua">Nyandarua</option>
+                  <option value="Nyeri">Nyeri</option>
+                  <option value="Kirinyaga">Kirinyaga</option>
+                  <option value="Muranga">Muranga</option>
+                  <option value="Kiambu">Kiambu</option>
+                  <option value="Turkana">Turkana</option>
+                  <option value="West Pokot">West Pokot</option>
+                  <option value="Samburu">Samburu</option>
+                  <option value="Transzoia">Transzoia</option>
+                  <option value="Uasin Gishu">Uasin Gishu</option>
+                  <option value="">Elgeyo Marakwet</option>
+                  <option value="Nandi">Nandi</option>
+                  <option value="Baringo">Baringo</option>
+                  <option value="Laikipia">Laikipia</option>
+                  <option value="Nakuru">Nakuru</option>
+                  <option value="Narok">Narok</option>
+                  <option value="Kajiado">Kajiado</option>
+                  <option value="Kericho">Kericho</option>
+                  <option value="Bomet">Bomet</option>
+                  <option value="Kakamega">Kakamega</option>
+                  <option value="Vihiga">Vihiga</option>
+                  <option value="Bungoma">Bungoma</option>
+                  <option value="Busia">Busia</option>
+                  <option value="Siaya">Siaya</option>
+                  <option value="Kisumu">Kisumu</option>
+                  <option value="Homa Bay">Homa Bay</option>
+                  <option value="Migori">Migori</option>
+                  <option value="Kisii">Kisii</option>
+                  <option value="Nyamira">Nyamira</option>
+                  <option value="Nairobi">Nairobi</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="inputgroup">
+            <div><label for="postal-code">Postal code</label></div>
+            <div><input type="text" name="postal-code" id="postal-code" required/></div>
+          </div>
+
+          <div class="inputgroup">
+            <div><label for="comments">Comments</label></div>
+            <div>
+              <textarea
+                name="comments"
+                id="comments"
+                cols="30"
+                rows="10"
+              ></textarea>
+            </div>
+          </div>
+
+          <input type="reset" value="Reset" />
+          <input type="submit" value="Order" />
+        </form>
+      </article>
+    </main>
+    <footer>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="pies.html">Pies</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </footer>
+    <script type="text/javascript">
+
+      window.addEventListener("DOMContentLoaded", function(e) {
+
+        const order = localStorage.getItem("order");
+        const pieOrder = JSON.parse(order);
+        let locationbox=document.querySelector("#location");
+
+        let location={
+            latitude:"unknown",
+            longitude:"unknown"
+        };
+        window.navigator.geolocation.getCurrentPosition(
+            function(position){
+                location={
+                    latitude:position.coords.latitude,
+                    longitude:position.coords.longitude
+                };
+                locationbox.value=JSON.stringify(location);
+            },
+            function(error){
+                locationbox.value=JSON.stringify(location);
+            }
+        );
+
+        if (order) {
+
+            const orderInput =document .querySelector("#pie-order");
+            orderInput.value=order;
+          const pie = document.querySelector(".pie");
+          const title = pie.querySelector(".title");
+          const price = pie.querySelector(".price");
+          const desc = pie.querySelector(".desc");
+
+          title.innerText = pieOrder.title;
+          price.innerText = pieOrder.price;
+          desc.innerText = pieOrder.desc;
+
+
+
+          const img = pie.querySelector("img");
+          img.setAttribute("src", `images/${pieOrder.order_id}.png`);
+          img.setAttribute("alt", pieOrder.title);
+        }
+      });
+    </script>
+  </body>
+</html>
