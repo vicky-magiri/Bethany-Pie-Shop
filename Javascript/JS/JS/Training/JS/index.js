@@ -30,8 +30,9 @@ const passwordPattern=/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{
 
 btnSubmit.addEventListener("click",(e) => {
     e.preventDefault();
-    validateForm();
     // form.reset();
+    validateForm();
+    
 });
  function validateForm(){
     const fName=firstName.value.trim();
@@ -129,6 +130,45 @@ repeatPass.addEventListener("keyup",e=>{
     }
     else{
         const formControl=repeatPass.parentElement;
+        formControl.classList.remove("correct"); 
+        formControl.classList.add("error");
+    }
+});
+
+//first Name , MidName and LastName validation
+const namePattern=/^(?=.*[a-z])(?=.*[A-Z]).{3,12}$/;
+firstName.addEventListener("keyup",e=>{
+    if(namePattern.test(e.target.value)){
+        const formControl=firstName.parentElement;
+        formControl.classList.remove("error");
+        formControl.classList.add("correct"); 
+    }
+    else{
+        const formControl=firstName.parentElement;
+        formControl.classList.remove("correct"); 
+        formControl.classList.add("error");
+    }
+});
+midName.addEventListener("keyup",e=>{
+    if(namePattern.test(e.target.value)){
+        const formControl=midName.parentElement;
+        formControl.classList.remove("error");
+        formControl.classList.add("correct"); 
+    }
+    else{
+        const formControl=midName.parentElement;
+        formControl.classList.remove("correct"); 
+        formControl.classList.add("error");
+    }
+});
+lastName.addEventListener("keyup",e=>{
+    if(namePattern.test(e.target.value)){
+        const formControl=lastName.parentElement;
+        formControl.classList.remove("error");
+        formControl.classList.add("correct"); 
+    }
+    else{
+        const formControl=lastName.parentElement;
         formControl.classList.remove("correct"); 
         formControl.classList.add("error");
     }
