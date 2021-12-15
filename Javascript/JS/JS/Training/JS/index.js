@@ -22,6 +22,12 @@ const formInput=document.querySelector(".formControl");
 const repeatPass=document.getElementById("passwordCheck");
 const form=document.querySelector(".register");
 
+//email Pattern
+const emailPattern=/\S+@\S+\.\S+/;
+
+//password Pattern
+const passwordPattern=/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[ -/:-@\[-`{-~]).{6,64}$/
+
 btnSubmit.addEventListener("click",(e) => {
     e.preventDefault();
     validateForm();
@@ -56,8 +62,6 @@ btnSubmit.addEventListener("click",(e) => {
     //check for the email
     if(email === ""){
         setError(emailAddress,"Email Address can not be blank");
-    }else if(!validateEmail(email)){
-        setError(emailAddress," Invalid Email Address");
     }
     else{       
         setTrue(emailAddress);
@@ -65,8 +69,6 @@ btnSubmit.addEventListener("click",(e) => {
     //check for password
     if(pass === ""){
         setError(password,"Password can not be blank");
-    }else if(pass.length<8){
-        setError(repeatPass,"Password should be 8 character or more");
     }else if(pass !== repeatPass){
         setError(repeatPass,"Passwords do not match");
     }
@@ -95,10 +97,39 @@ btnSubmit.addEventListener("click",(e) => {
     const formControl=field.parentElement;
     formControl.classList.add("correct")
  }
- function validateEmail(email){
-     const emailPattern=/\S+@\S+\.\S+/;
-     return emailPattern.test(email);
- }
-
-
-
+emailAddress.addEventListener("keyup",e =>{
+    if(emailPattern.test(e.target.value)){
+        const formControl=emailAddress.parentElement;
+            formControl.classList.remove("error");
+            formControl.classList.add("correct");
+    }
+    else{
+        const formControl=emailAddress.parentElement;
+            formControl.classList.remove("correct");
+            formControl.classList.add("error");
+    }
+});
+password.addEventListener("keyup",e => {
+    if(passwordPattern.test(e.target.value)){
+        const formControl=password.parentElement;
+        formControl.classList.remove("error");
+        formControl.classList.add("correct"); 
+    }
+    else{
+        const formControl=password.parentElement;
+        formControl.classList.remove("correct"); 
+        formControl.classList.add("error");
+    }
+});
+repeatPass.addEventListener("keyup",e=>{
+    if(password.value.trim() === e.target.value){
+        const formControl=repeatPass.parentElement;
+        formControl.classList.remove("error");
+        formControl.classList.add("correct"); 
+    }
+    else{
+        const formControl=repeatPass.parentElement;
+        formControl.classList.remove("correct"); 
+        formControl.classList.add("error");
+    }
+});
