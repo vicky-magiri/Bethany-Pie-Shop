@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" 
     integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
      crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <script type="text/javascript">
+        window.addEventListener('keydown',function(e){if(e.keyIdentifier=='U+000A'||e.keyIdentifier=='Enter'||e.keyCode==13){if(e.target.nodeName=='INPUT'&&e.target.type=='text'){e.preventDefault();return false;}}},true);
+        </script>
+        
     <link rel="stylesheet" href="/CSS/styles.css" type="text/css">
     <title>Form Validation | Net Ninja</title>
 </head>
@@ -18,23 +22,23 @@
             <div class="header">
                 <h2>User Registration</h2>
             </div>
-            <div class="formControl correct">
+            <div class="formControl">
                 <label for="firstName">First Name:</label>
-                <input type="text" placeholder="Mike" name="firstName" >
+                <input type="text" id="firstName" placeholder="Mike" name="firstName" >
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-triangle"></i>
                 <p class="error_msg">Errors</p>
             </div>
-            <div class="formControl error">
+            <div class="formControl">
                 <label for="midName">Middle Name:</label>
-                <input type="text" placeholder="Njoroge" name="midName" >
+                <input type="text" id="midName" placeholder="Njoroge" name="midName" >
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-triangle"></i>
                 <p class="error_msg">Errors</p>
             </div>
             <div class="formControl">
                 <label for="lastName">Last Name:</label>
-                <input type="text" placeholder="Gikonyore" name="lastName" >
+                <input type="text" id="lastName" placeholder="Gikonyore" name="lastName" >
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-triangle"></i>
                 <p class="error_msg">Errors</p>
@@ -60,7 +64,7 @@
                 <i class="fas fa-exclamation-triangle"></i>
                 <p class="error_msg">Errors</p>
             </div>
-            <input type="submit" id="submit" value="Submit">
+            <button id="submit">Submit</button>
         </form>
     </div>
     <div class="popWrapper">

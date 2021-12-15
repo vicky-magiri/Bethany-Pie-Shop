@@ -52,8 +52,9 @@ form header{
 }
 .error_msg{
     visibility: hidden;
+    color:#bd2203;
 }
-form input[type="submit"]{
+#submit{
     padding:20px;
     margin:2rem;
     font-size: 1.5rem;
@@ -104,13 +105,17 @@ form input[type="submit"]{
     outline: 2px solid #4caf50;
 }
 .formControl.error input{
-    outline: 2px solid #d14b30;
+    outline: 2px solid #bd2203;
 }
 .formControl.error .fa-exclamation-triangle{
-    color:#d14b30;
+    color:#bd2203;
     visibility: visible;;
 }
 .formControl.correct .fa-check-circle{
     color:#4caf50;
     visibility: visible;;
+}
+.formControl.error .error_msg{
+    visibility: visible;
+    color:#bd2203;
 }
